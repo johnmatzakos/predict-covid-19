@@ -3,6 +3,6 @@ This project aims to forecast future Covid-19 cases in Greece. It serves as an o
 
 <strong>Development Status: In Progress...</strong>
 
-Note: Each python script is dedicated to each phase of the data mining process and the driver script, hence Main.py, executes each phase accordingly.
+Note about project structure: Each python script is dedicated to each phase of the data mining process and the driver script, hence Main.py, executes each phase accordingly.
 
 Data Source: https://github.com/CSSEGISandData/COVID-19
