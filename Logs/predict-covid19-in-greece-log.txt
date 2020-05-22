@@ -1,0 +1,383 @@
+2020-05-21 12:15:32,925 | INFO | Main : 
+
+				---- PROJECT: Predictions of Covid-19 in Greece ----
+				----------------------------------------------------
+
+2020-05-21 12:15:32,925 | INFO | Main : Start of Execution
+
+				------------ DATA MINING PIPELINE: START ------------
+
+2020-05-21 12:15:32,925 | INFO | Main : 
+
+				------------ DATA PREPROCESSING ------------
+
+2020-05-21 12:15:32,925 | INFO | DataPreprocessing : Loading Time Series Data
+2020-05-21 12:15:33,029 | INFO | DataPreprocessing : Covid-19 confirmed cases in Greece 
+   1/22/20  1/23/20  1/24/20  1/25/20  ...  4/27/20  4/28/20  4/29/20  4/30/20
+0        0        0        0        0  ...     2534     2566     2576     2591
+
+[1 rows x 100 columns]
+2020-05-21 12:15:33,128 | INFO | DataPreprocessing : Deaths due to Covid-19 in Greece 
+   1/22/20  1/23/20  1/24/20  1/25/20  ...  4/27/20  4/28/20  4/29/20  4/30/20
+0        0        0        0        0  ...      136      138      139      140
+
+[1 rows x 100 columns]
+2020-05-21 12:15:33,231 | INFO | DataPreprocessing : Covid-19 recovered cases in Greece 
+   1/22/20  1/23/20  1/24/20  1/25/20  ...  4/27/20  4/28/20  4/29/20  4/30/20
+0        0        0        0        0  ...      577      577      577     1374
+
+[1 rows x 100 columns]
+2020-05-21 12:15:33,231 | INFO | DataPreprocessing : Transposing the Data Frames
+2020-05-21 12:15:33,233 | INFO | DataPreprocessing : Covid-19 confirmed cases in Greece column names 
+Index(['Confirmed Cases'], dtype='object')
+2020-05-21 12:15:33,238 | INFO | DataPreprocessing : Covid-19 confirmed cases in Greece 
+         Confirmed Cases
+Date                    
+1/22/20                0
+1/23/20                0
+1/24/20                0
+1/25/20                0
+1/26/20                0
+...                  ...
+4/26/20             2517
+4/27/20             2534
+4/28/20             2566
+4/29/20             2576
+4/30/20             2591
+
+[100 rows x 1 columns]
+2020-05-21 12:15:33,243 | INFO | DataPreprocessing : Deaths due to Covid-19 in Greece 
+         Deaths
+Date           
+1/22/20       0
+1/23/20       0
+1/24/20       0
+1/25/20       0
+1/26/20       0
+...         ...
+4/26/20     134
+4/27/20     136
+4/28/20     138
+4/29/20     139
+4/30/20     140
+
+[100 rows x 1 columns]
+2020-05-21 12:15:33,249 | INFO | DataPreprocessing : Covid-19 recovered cases in Greece 
+         Recovered Cases
+Date                    
+1/22/20                0
+1/23/20                0
+1/24/20                0
+1/25/20                0
+1/26/20                0
+...                  ...
+4/26/20              577
+4/27/20              577
+4/28/20              577
+4/29/20              577
+4/30/20             1374
+
+[100 rows x 1 columns]
+2020-05-21 12:15:33,250 | INFO | DataPreprocessing : Merging Data Frames
+2020-05-21 12:15:33,259 | INFO | DataPreprocessing : Covid-19 Cases in Greece 
+         Confirmed Cases  Deaths  Recovered Cases
+Date                                             
+1/22/20                0       0                0
+1/23/20                0       0                0
+1/24/20                0       0                0
+1/25/20                0       0                0
+1/26/20                0       0                0
+...                  ...     ...              ...
+4/26/20             2517     134              577
+4/27/20             2534     136              577
+4/28/20             2566     138              577
+4/29/20             2576     139              577
+4/30/20             2591     140             1374
+
+[100 rows x 3 columns]
+2020-05-21 12:15:33,260 | INFO | DataPreprocessing : data frame index: Index(['1/22/20', '1/23/20', '1/24/20', '1/25/20', '1/26/20', '1/27/20',
+       '1/28/20', '1/29/20', '1/30/20', '1/31/20', '2/1/20', '2/2/20',
+       '2/3/20', '2/4/20', '2/5/20', '2/6/20', '2/7/20', '2/8/20', '2/9/20',
+       '2/10/20', '2/11/20', '2/12/20', '2/13/20', '2/14/20', '2/15/20',
+       '2/16/20', '2/17/20', '2/18/20', '2/19/20', '2/20/20', '2/21/20',
+       '2/22/20', '2/23/20', '2/24/20', '2/25/20', '2/26/20', '2/27/20',
+       '2/28/20', '2/29/20', '3/1/20', '3/2/20', '3/3/20', '3/4/20', '3/5/20',
+       '3/6/20', '3/7/20', '3/8/20', '3/9/20', '3/10/20', '3/11/20', '3/12/20',
+       '3/13/20', '3/14/20', '3/15/20', '3/16/20', '3/17/20', '3/18/20',
+       '3/19/20', '3/20/20', '3/21/20', '3/22/20', '3/23/20', '3/24/20',
+       '3/25/20', '3/26/20', '3/27/20', '3/28/20', '3/29/20', '3/30/20',
+       '3/31/20', '4/1/20', '4/2/20', '4/3/20', '4/4/20', '4/5/20', '4/6/20',
+       '4/7/20', '4/8/20', '4/9/20', '4/10/20', '4/11/20', '4/12/20',
+       '4/13/20', '4/14/20', '4/15/20', '4/16/20', '4/17/20', '4/18/20',
+       '4/19/20', '4/20/20', '4/21/20', '4/22/20', '4/23/20', '4/24/20',
+       '4/25/20', '4/26/20', '4/27/20', '4/28/20', '4/29/20', '4/30/20'],
+      dtype='object', name='Date')
+2020-05-21 12:15:33,267 | INFO | DataPreprocessing : data frame: 
+      Date  Confirmed Cases  Deaths  Recovered Cases
+0  1/22/20                0       0                0
+1  1/23/20                0       0                0
+2  1/24/20                0       0                0
+3  1/25/20                0       0                0
+4  1/26/20                0       0                0
+2020-05-21 12:15:33,281 | INFO | DataPreprocessing : data frame: 
+      Date  Confirmed Cases  Deaths  Recovered Cases   DateTime
+0  1/22/20                0       0                0 2020-01-22
+1  1/23/20                0       0                0 2020-01-23
+2  1/24/20                0       0                0 2020-01-24
+3  1/25/20                0       0                0 2020-01-25
+4  1/26/20                0       0                0 2020-01-26
+2020-05-21 12:15:33,289 | INFO | DataPreprocessing : data frame: 
+            Confirmed Cases  Deaths  Recovered Cases
+Date                                                
+2020-01-22                0       0                0
+2020-01-23                0       0                0
+2020-01-24                0       0                0
+2020-01-25                0       0                0
+2020-01-26                0       0                0
+2020-05-21 12:15:33,290 | INFO | DataPreprocessing : data frame index: DatetimeIndex(['2020-01-22', '2020-01-23', '2020-01-24', '2020-01-25',
+               '2020-01-26', '2020-01-27', '2020-01-28', '2020-01-29',
+               '2020-01-30', '2020-01-31', '2020-02-01', '2020-02-02',
+               '2020-02-03', '2020-02-04', '2020-02-05', '2020-02-06',
+               '2020-02-07', '2020-02-08', '2020-02-09', '2020-02-10',
+               '2020-02-11', '2020-02-12', '2020-02-13', '2020-02-14',
+               '2020-02-15', '2020-02-16', '2020-02-17', '2020-02-18',
+               '2020-02-19', '2020-02-20', '2020-02-21', '2020-02-22',
+               '2020-02-23', '2020-02-24', '2020-02-25', '2020-02-26',
+               '2020-02-27', '2020-02-28', '2020-02-29', '2020-03-01',
+               '2020-03-02', '2020-03-03', '2020-03-04', '2020-03-05',
+               '2020-03-06', '2020-03-07', '2020-03-08', '2020-03-09',
+               '2020-03-10', '2020-03-11', '2020-03-12', '2020-03-13',
+               '2020-03-14', '2020-03-15', '2020-03-16', '2020-03-17',
+               '2020-03-18', '2020-03-19', '2020-03-20', '2020-03-21',
+               '2020-03-22', '2020-03-23', '2020-03-24', '2020-03-25',
+               '2020-03-26', '2020-03-27', '2020-03-28', '2020-03-29',
+               '2020-03-30', '2020-03-31', '2020-04-01', '2020-04-02',
+               '2020-04-03', '2020-04-04', '2020-04-05', '2020-04-06',
+               '2020-04-07', '2020-04-08', '2020-04-09', '2020-04-10',
+               '2020-04-11', '2020-04-12', '2020-04-13', '2020-04-14',
+               '2020-04-15', '2020-04-16', '2020-04-17', '2020-04-18',
+               '2020-04-19', '2020-04-20', '2020-04-21', '2020-04-22',
+               '2020-04-23', '2020-04-24', '2020-04-25', '2020-04-26',
+               '2020-04-27', '2020-04-28', '2020-04-29', '2020-04-30'],
+              dtype='datetime64[ns]', name='Date', freq=None)
+2020-05-21 12:15:33,290 | INFO | Main : 
+
+				------------ FEATURE ENGINEERING ------------
+
+2020-05-21 12:15:33,291 | INFO | FeatureEngineering : Caculating the daily active cases...
+2020-05-21 12:15:33,291 | INFO | FeatureEngineering : Active Cases: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 4, 4, 7, 7, 7, 9, 31, 45, 46, 73, 73, 89, 98, 98, 189, 217, 319, 319, 374, 405, 404, 470, 498, 590, 659, 694, 763, 830, 886, 977, 1066, 1117, 1213, 1313, 1430, 1472, 1527, 1584, 1407, 1482, 1532, 1599, 1650, 1719, 1747, 1777, 1800, 1821, 1833, 1847, 1856, 1853, 1860, 1703, 1710, 1761, 1783, 1799, 1806, 1821, 1851, 1860]
+2020-05-21 12:15:33,291 | DEBUG | FeatureEngineering : active_cases_list length 100
+2020-05-21 12:15:33,291 | DEBUG | FeatureEngineering : time_series length 100
+2020-05-21 12:15:33,292 | DEBUG | FeatureEngineering : new_cases_list list size before 0
+2020-05-21 12:15:33,292 | INFO | FeatureEngineering : Source list size: 100
+2020-05-21 12:15:33,293 | DEBUG | FeatureEngineering : new_cases_list size after 100
+2020-05-21 12:15:33,293 | DEBUG | FeatureEngineering : new_cases_list list size before 0
+2020-05-21 12:15:33,293 | INFO | FeatureEngineering : Source list size: 100
+2020-05-21 12:15:33,293 | DEBUG | FeatureEngineering : new_cases_list size after 100
+2020-05-21 12:15:33,293 | DEBUG | FeatureEngineering : new_cases_list list size before 0
+2020-05-21 12:15:33,293 | INFO | FeatureEngineering : Source list size: 100
+2020-05-21 12:15:33,293 | DEBUG | FeatureEngineering : new_cases_list size after 100
+2020-05-21 12:15:33,293 | DEBUG | FeatureEngineering : new_cases_list list size before 0
+2020-05-21 12:15:33,294 | INFO | FeatureEngineering : Source list size: 100
+2020-05-21 12:15:33,294 | DEBUG | FeatureEngineering : new_cases_list size after 100
+2020-05-21 12:15:33,305 | INFO | FeatureEngineering : New Time Series Data Frame: 
+            New Confirmed Cases  ...  New Active Cases
+Date                             ...                  
+2020-01-22                    0  ...                 0
+2020-01-23                    0  ...                 0
+2020-01-24                    0  ...                 0
+2020-01-25                    0  ...                 0
+2020-01-26                    0  ...                 0
+
+[5 rows x 4 columns]
+2020-05-21 12:15:33,305 | INFO | PreliminaryAnalysis : For New Confirmed Cases...
+2020-05-21 12:15:33,305 | INFO | PreliminaryAnalysis : Augmented Dickey Fuller Test (ADH Test)
+2020-05-21 12:15:33,312 | INFO | PreliminaryAnalysis : ADF Statistic: -2.101846120691416
+2020-05-21 12:15:33,312 | INFO | PreliminaryAnalysis : p-value: 0.2437729153716644
+2020-05-21 12:15:33,312 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,312 | INFO | PreliminaryAnalysis :    1%, -3.4996365338407074
+2020-05-21 12:15:33,312 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,312 | INFO | PreliminaryAnalysis :    5%, -2.8918307730370025
+2020-05-21 12:15:33,312 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,312 | INFO | PreliminaryAnalysis :    10%, -2.5829283377617176
+2020-05-21 12:15:33,312 | INFO | PreliminaryAnalysis : The null hypothesis is that the time series has a unit root and is non-stationary.
+2020-05-21 12:15:33,312 | INFO | PreliminaryAnalysis : The p-value (0.2437729153716644) is greater than the significance level (0.05).
+2020-05-21 12:15:33,313 | INFO | PreliminaryAnalysis : The time series of New Confirmed Cases are non-stationary.
+2020-05-21 12:15:33,313 | INFO | PreliminaryAnalysis : Therefore, the null hypothesis is accepted.
+2020-05-21 12:15:33,313 | INFO | PreliminaryAnalysis : Is time series data stationary: False
+2020-05-21 12:15:33,313 | INFO | PreliminaryAnalysis : Kwiatkowski-Phillips-Schmidt-Shin (KPSS test)
+2020-05-21 12:15:33,313 | INFO | PreliminaryAnalysis : 
+KPSS Statistic: 0.488561
+2020-05-21 12:15:33,313 | INFO | PreliminaryAnalysis : p-value: 0.04424311623022604
+2020-05-21 12:15:33,313 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,314 | INFO | PreliminaryAnalysis :    10%, 0.347
+2020-05-21 12:15:33,314 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,314 | INFO | PreliminaryAnalysis :    5%, 0.463
+2020-05-21 12:15:33,314 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,314 | INFO | PreliminaryAnalysis :    2.5%, 0.574
+2020-05-21 12:15:33,314 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,314 | INFO | PreliminaryAnalysis :    1%, 0.739
+2020-05-21 12:15:33,314 | INFO | PreliminaryAnalysis : The null hypothesis is that the time series has a unit root and is trend-stationary.
+2020-05-21 12:15:33,314 | INFO | PreliminaryAnalysis : The p-value (0.04424311623022604) is greater than the significance level (0.05).
+2020-05-21 12:15:33,314 | INFO | PreliminaryAnalysis : The time series of New Confirmed Cases are non-trend-stationary.
+2020-05-21 12:15:33,314 | INFO | PreliminaryAnalysis : Therefore, the null hypothesis is accepted.
+2020-05-21 12:15:33,314 | INFO | PreliminaryAnalysis : Is time series data trend-stationary: True 
+
+2020-05-21 12:15:33,315 | INFO | PreliminaryAnalysis : For New Deaths...
+2020-05-21 12:15:33,315 | INFO | PreliminaryAnalysis : Augmented Dickey Fuller Test (ADH Test)
+2020-05-21 12:15:33,321 | INFO | PreliminaryAnalysis : ADF Statistic: -1.0939434554781646
+2020-05-21 12:15:33,321 | INFO | PreliminaryAnalysis : p-value: 0.7174811316229472
+2020-05-21 12:15:33,322 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,322 | INFO | PreliminaryAnalysis :    1%, -3.502704609582561
+2020-05-21 12:15:33,322 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,322 | INFO | PreliminaryAnalysis :    5%, -2.8931578098779522
+2020-05-21 12:15:33,322 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,322 | INFO | PreliminaryAnalysis :    10%, -2.583636712914788
+2020-05-21 12:15:33,322 | INFO | PreliminaryAnalysis : The null hypothesis is that the time series has a unit root and is non-stationary.
+2020-05-21 12:15:33,322 | INFO | PreliminaryAnalysis : The p-value (0.7174811316229472) is greater than the significance level (0.05).
+2020-05-21 12:15:33,322 | INFO | PreliminaryAnalysis : The time series of New Deaths are non-stationary.
+2020-05-21 12:15:33,322 | INFO | PreliminaryAnalysis : Therefore, the null hypothesis is accepted.
+2020-05-21 12:15:33,322 | INFO | PreliminaryAnalysis : Is time series data stationary: False
+2020-05-21 12:15:33,323 | INFO | PreliminaryAnalysis : Kwiatkowski-Phillips-Schmidt-Shin (KPSS test)
+2020-05-21 12:15:33,323 | INFO | PreliminaryAnalysis : 
+KPSS Statistic: 0.597663
+2020-05-21 12:15:33,323 | INFO | PreliminaryAnalysis : p-value: 0.022848807080975878
+2020-05-21 12:15:33,323 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,323 | INFO | PreliminaryAnalysis :    10%, 0.347
+2020-05-21 12:15:33,323 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,323 | INFO | PreliminaryAnalysis :    5%, 0.463
+2020-05-21 12:15:33,323 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,323 | INFO | PreliminaryAnalysis :    2.5%, 0.574
+2020-05-21 12:15:33,324 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,324 | INFO | PreliminaryAnalysis :    1%, 0.739
+2020-05-21 12:15:33,324 | INFO | PreliminaryAnalysis : The null hypothesis is that the time series has a unit root and is trend-stationary.
+2020-05-21 12:15:33,324 | INFO | PreliminaryAnalysis : The p-value (0.022848807080975878) is greater than the significance level (0.05).
+2020-05-21 12:15:33,324 | INFO | PreliminaryAnalysis : The time series of New Deaths are non-trend-stationary.
+2020-05-21 12:15:33,324 | INFO | PreliminaryAnalysis : Therefore, the null hypothesis is accepted.
+2020-05-21 12:15:33,324 | INFO | PreliminaryAnalysis : Is time series data trend-stationary: True 
+
+2020-05-21 12:15:33,324 | INFO | PreliminaryAnalysis : For New Recovered Cases...
+2020-05-21 12:15:33,324 | INFO | PreliminaryAnalysis : Augmented Dickey Fuller Test (ADH Test)
+2020-05-21 12:15:33,331 | INFO | PreliminaryAnalysis : ADF Statistic: 1.139488207693245
+2020-05-21 12:15:33,331 | INFO | PreliminaryAnalysis : p-value: 0.995539939730774
+2020-05-21 12:15:33,331 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,331 | INFO | PreliminaryAnalysis :    1%, -3.50434289821397
+2020-05-21 12:15:33,331 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,331 | INFO | PreliminaryAnalysis :    5%, -2.8938659630479413
+2020-05-21 12:15:33,331 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,331 | INFO | PreliminaryAnalysis :    10%, -2.5840147047458037
+2020-05-21 12:15:33,331 | INFO | PreliminaryAnalysis : The null hypothesis is that the time series has a unit root and is non-stationary.
+2020-05-21 12:15:33,332 | INFO | PreliminaryAnalysis : The p-value (0.995539939730774) is greater than the significance level (0.05).
+2020-05-21 12:15:33,332 | INFO | PreliminaryAnalysis : The time series of New Recovered Cases are non-stationary.
+2020-05-21 12:15:33,332 | INFO | PreliminaryAnalysis : Therefore, the null hypothesis is accepted.
+2020-05-21 12:15:33,332 | INFO | PreliminaryAnalysis : Is time series data stationary: False
+2020-05-21 12:15:33,333 | INFO | PreliminaryAnalysis : Kwiatkowski-Phillips-Schmidt-Shin (KPSS test)
+2020-05-21 12:15:33,333 | INFO | PreliminaryAnalysis : 
+KPSS Statistic: 0.516622
+2020-05-21 12:15:33,333 | INFO | PreliminaryAnalysis : p-value: 0.03792301907916651
+2020-05-21 12:15:33,333 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,334 | INFO | PreliminaryAnalysis :    10%, 0.347
+2020-05-21 12:15:33,334 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,334 | INFO | PreliminaryAnalysis :    5%, 0.463
+2020-05-21 12:15:33,334 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,334 | INFO | PreliminaryAnalysis :    2.5%, 0.574
+2020-05-21 12:15:33,334 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,334 | INFO | PreliminaryAnalysis :    1%, 0.739
+2020-05-21 12:15:33,334 | INFO | PreliminaryAnalysis : The null hypothesis is that the time series has a unit root and is trend-stationary.
+2020-05-21 12:15:33,334 | INFO | PreliminaryAnalysis : The p-value (0.03792301907916651) is greater than the significance level (0.05).
+2020-05-21 12:15:33,334 | INFO | PreliminaryAnalysis : The time series of New Recovered Cases are non-trend-stationary.
+2020-05-21 12:15:33,334 | INFO | PreliminaryAnalysis : Therefore, the null hypothesis is accepted.
+2020-05-21 12:15:33,335 | INFO | PreliminaryAnalysis : Is time series data trend-stationary: True 
+
+2020-05-21 12:15:33,335 | INFO | PreliminaryAnalysis : For New Active Cases...
+2020-05-21 12:15:33,335 | INFO | PreliminaryAnalysis : Augmented Dickey Fuller Test (ADH Test)
+2020-05-21 12:15:33,342 | INFO | PreliminaryAnalysis : ADF Statistic: -3.331805257441406
+2020-05-21 12:15:33,342 | INFO | PreliminaryAnalysis : p-value: 0.013515273819880389
+2020-05-21 12:15:33,342 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,342 | INFO | PreliminaryAnalysis :    1%, -3.4996365338407074
+2020-05-21 12:15:33,342 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,342 | INFO | PreliminaryAnalysis :    5%, -2.8918307730370025
+2020-05-21 12:15:33,342 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,342 | INFO | PreliminaryAnalysis :    10%, -2.5829283377617176
+2020-05-21 12:15:33,343 | INFO | PreliminaryAnalysis : The null hypothesis is that the time series has a unit root and is non-stationary.
+2020-05-21 12:15:33,343 | INFO | PreliminaryAnalysis : The p-value (0.013515273819880389) is less than the significance level (0.05).
+2020-05-21 12:15:33,343 | INFO | PreliminaryAnalysis : The time series of New Active Cases are stationary.
+2020-05-21 12:15:33,343 | INFO | PreliminaryAnalysis : Therefore, the null hypothesis is rejected.
+2020-05-21 12:15:33,343 | INFO | PreliminaryAnalysis : Is time series data stationary: True
+2020-05-21 12:15:33,343 | INFO | PreliminaryAnalysis : Kwiatkowski-Phillips-Schmidt-Shin (KPSS test)
+2020-05-21 12:15:33,344 | INFO | PreliminaryAnalysis : 
+KPSS Statistic: 0.326518
+2020-05-21 12:15:33,344 | INFO | PreliminaryAnalysis : p-value: 0.1
+2020-05-21 12:15:33,344 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,344 | INFO | PreliminaryAnalysis :    10%, 0.347
+2020-05-21 12:15:33,344 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,344 | INFO | PreliminaryAnalysis :    5%, 0.463
+2020-05-21 12:15:33,344 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,344 | INFO | PreliminaryAnalysis :    2.5%, 0.574
+2020-05-21 12:15:33,344 | INFO | PreliminaryAnalysis : Critial Values:
+2020-05-21 12:15:33,344 | INFO | PreliminaryAnalysis :    1%, 0.739
+2020-05-21 12:15:33,345 | INFO | PreliminaryAnalysis : The null hypothesis is that the time series has a unit root and is trend-stationary.
+2020-05-21 12:15:33,345 | INFO | PreliminaryAnalysis : The p-value (0.1) is less than the significance level (0.05).
+2020-05-21 12:15:33,345 | INFO | PreliminaryAnalysis : The time series of New Active Cases are trend-stationary.
+2020-05-21 12:15:33,345 | INFO | PreliminaryAnalysis : Therefore, the null hypothesis is rejected.
+2020-05-21 12:15:33,345 | INFO | PreliminaryAnalysis : Is time series data trend-stationary: False 
+
+2020-05-21 12:15:33,345 | INFO | Main : 
+
+				------------ DATA VISUALIZATION ------------
+
+2020-05-21 12:15:38,339 | INFO | Main : 
+
+				------------ DATA MINING ------------
+
+2020-05-21 12:15:38,340 | INFO | DataMining : Parameter Selection for ARIMA model
+2020-05-21 12:15:39,149 | INFO | DataMining : ARIMA(0, 0, 0)x(1, 1, 1, 12)12 - AIC:808.9792884768149
+2020-05-21 12:15:40,240 | INFO | DataMining : ARIMA(0, 0, 1)x(1, 1, 1, 12)12 - AIC:797.0147679785648
+2020-05-21 12:15:41,068 | INFO | DataMining : ARIMA(0, 1, 0)x(1, 1, 1, 12)12 - AIC:823.7377972424193
+2020-05-21 12:15:42,665 | INFO | DataMining : ARIMA(0, 1, 1)x(1, 1, 1, 12)12 - AIC:776.2461106302377
+2020-05-21 12:15:43,679 | INFO | DataMining : ARIMA(1, 0, 0)x(1, 1, 1, 12)12 - AIC:803.9100516332101
+2020-05-21 12:15:45,771 | INFO | DataMining : ARIMA(1, 0, 1)x(1, 1, 1, 12)12 - AIC:785.976575493085
+2020-05-21 12:15:46,921 | INFO | DataMining : ARIMA(1, 1, 0)x(1, 1, 1, 12)12 - AIC:799.3652048556711
+2020-05-21 12:15:49,109 | INFO | DataMining : ARIMA(1, 1, 1)x(1, 1, 1, 12)12 - AIC:778.0700161694299
+2020-05-21 12:15:49,110 | INFO | DataMining : Fitting the ARIMA model
+2020-05-21 12:15:49,913 | INFO | DataMining : 
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ar.L1         -0.0593      0.205     -0.290      0.772      -0.461       0.342
+ma.L1         -0.7928      0.114     -6.932      0.000      -1.017      -0.569
+ar.S.L12      -0.0018      0.319     -0.006      0.995      -0.627       0.623
+ma.S.L12      -1.0000      0.059    -16.818      0.000      -1.117      -0.883
+sigma2      1729.8147   3.44e-05   5.03e+07      0.000    1729.815    1729.815
+==============================================================================
+2020-05-21 12:15:49,913 | INFO | DataMining : Model Diagnostics
+2020-05-21 12:15:50,600 | INFO | DataMining : ARIMA Model Results: 
+<statsmodels.tsa.statespace.mlemodel.PredictionResultsWrapper object at 0x000001C53EF94358>
+2020-05-21 12:15:50,609 | INFO | DataMining : ARIMA Model Results: 
+            lower New Active Cases  upper New Active Cases
+Date                                                      
+2020-01-22            -3394.757202             3394.757202
+2020-01-23            -2774.630323             2774.630323
+2020-01-24            -2775.035099             2775.035099
+2020-01-25            -2775.035437             2775.035437
+2020-01-26            -2775.035437             2775.035437
+...                            ...                     ...
+2020-04-26              -74.653992               99.651320
+2020-04-27              -80.445289               93.855832
+2020-04-28              -80.009272               93.508836
+2020-04-29              -81.952513               91.342767
+2020-04-30              -82.661790               90.496020
+
+[100 rows x 2 columns]
+2020-05-21 12:15:51,054 | INFO | DataMining : The Mean Squared Error of our forecasts is 2248.47
+2020-05-21 12:15:51,054 | INFO | DataMining : The Root Mean Squared Error of our forecasts is 47.42
+2020-05-21 12:15:51,495 | INFO | Main : End of Execution
+
+				------------ DATA MINING PIPELINE: END ------------
+
+2020-05-21 12:15:51,495 | INFO | Main : Execution Time: 18.570890188217163 seconds
+2020-05-21 12:15:51,495 | INFO | Main : 
+
+				---- PROJECT: Predictions of Covid-19 in Greece ----
+				----------------------------------------------------
+
